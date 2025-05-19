@@ -1,0 +1,21 @@
+module "networking" {
+  source = "./networking"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  vnet_name           = var.vnet_name
+  subnet_name         = var.subnet_name
+  address_space       = var.address_space
+  subnet_prefix       = var.subnet_prefix
+}
+
+module "vms" {
+  source = "./vm"
+
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  subnet_id           = module.networking.subnet_id
+  nsg_id              = module.networking.nsg_id
+  vms                 = var.vms
+  subnet_cidr         = var.subnet_prefix
+  ssh_key             = var.vm_ssh_public_key
+}
