@@ -44,5 +44,5 @@ jobs:
       run: terraform apply -auto-approve
     #- name: Terraform Destroy
       #id: destroy
-      ##working-directory: ./project-root
+      #working-directory: ./project-root
       #run: terraform destroy -auto-approve
