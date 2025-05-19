@@ -12,7 +12,7 @@ module "vms" {
   source                  = "./vm"
   resource_group_name     = module.networking.resource_group_name
   resource_group_location = module.networking.resource_group_location
-  location            = var.location
+  #location            = var.location
   subnet_id           = module.networking.subnet_id
   nsg_id              = module.networking.nsg_id
   vms                 = var.vms
