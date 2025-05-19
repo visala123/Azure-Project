@@ -17,5 +17,5 @@ module "vms" {
   nsg_id              = module.networking.nsg_id
   vms                 = var.vms
   subnet_cidr         = var.subnet_prefix
-  ssh_key             = var.vm_ssh_public_key
+  vm_ssh_public_key   = var.vm_ssh_public_key
 }
