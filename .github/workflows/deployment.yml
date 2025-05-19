@@ -38,11 +38,11 @@ jobs:
       working-directory: ./project-root
       run: terraform plan
 
-    - name: Terraform Apply
-      id: apply
-      working-directory: ./project-root
-      run: terraform apply -auto-approve
-    #- name: Terraform Destroy
-      #id: destroy
+    #- name: Terraform Apply
+      #id: apply
       #working-directory: ./project-root
-      #run: terraform destroy -auto-approve
+      #run: terraform apply -auto-approve
+    - name: Terraform Destroy
+      id: destroy
+      working-directory: ./project-root
+      run: terraform destroy -auto-approve
