@@ -3,7 +3,7 @@ variable "resource_group_name" {
   default = "demo-resourses-rg"
 }
 
-variable "location" {
+variable "resource_group_location" {
   type    = string
   default = "East US"
 }
