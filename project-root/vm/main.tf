@@ -1,7 +1,8 @@
 resource "azurerm_public_ip" "public" {
   for_each            = { for k, v in var.vms : k => v if v.type == "public" }
   name                = "${each.key}-public-ip"
-  location            = var.location
+  #location            = var.location
+  location            = var.resource_group_location
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"
   sku                 = "Basic"
@@ -10,7 +11,8 @@ resource "azurerm_public_ip" "public" {
 resource "azurerm_network_interface" "nic" {
   for_each            = var.vms
   name                = "nic-${each.key}"
-  location            = var.location
+  #location            = var.location
+  location            = var.resource_group_location
   resource_group_name = var.resource_group_name
 
   ip_configuration {
@@ -32,7 +34,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   for_each              = var.vms
   name                  = each.key
   resource_group_name   = var.resource_group_name
-  location              = var.location
+ # location              = var.location
+  location              = var.resource_group_location
   size                  = "Standard_B1s"
   admin_username        = "azureuser"
   network_interface_ids = [azurerm_network_interface.nic[each.key].id]
