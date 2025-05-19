@@ -1,12 +1,12 @@
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
-  location = var.location
+  location            = var.resource_group_location
 }
 
 resource "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
   address_space       = var.address_space
-  location            = var.location
+  location            = var.resource_group_location
   resource_group_name = var.resource_group_name
 }
 
@@ -19,7 +19,7 @@ resource "azurerm_subnet" "subnet" {
 
 resource "azurerm_network_security_group" "nsg" {
   name                = "demo-nsg"
-  location            = var.location
+  location            = var.resource_group_location
   resource_group_name = var.resource_group_name
 
   security_rule {
