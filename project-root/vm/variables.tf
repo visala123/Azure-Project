@@ -3,7 +3,7 @@ variable "location" { type = string }
 variable "subnet_id" { type = string }
 variable "nsg_id" { type = string }
 variable "subnet_cidr" { type = string }
-variable "ssh_key" { type = string }
+variable "vm_ssh_public_key" { type = string }
 
 variable "vms" {
   type = map(object({
