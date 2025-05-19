@@ -38,11 +38,22 @@ jobs:
       working-directory: ./project-root
       run: terraform plan
 
-    #- name: Terraform Apply
-      #id: apply
-      #working-directory: ./project-root
-      #run: terraform apply -auto-approve
-    - name: Terraform Destroy
-      id: destroy
+    - name: Terraform Apply
+      id: apply
       working-directory: ./project-root
-      run: terraform destroy -auto-approve
+      run: terraform apply -auto-approve
+    #- name: Terraform Destroy
+      #id: destroy
+      #working-directory: ./project-root
+      #run: terraform destroy -auto-approve
+
+    - name: Get public IP from Terraform output
+      id: ip
+      working-directory: ./project-root
+      run: echo "VM_IP=$(terraform output -raw vm_public_ip)" >> $GITHUB_ENV
+
+    - name: Set up SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.VM_SSH_PRIVATE_KEY }}" > ~/.ssh/new_rsa
+        chmod 600 ~/.ssh/new_rsa
